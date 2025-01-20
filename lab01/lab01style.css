@@ -1,0 +1,31 @@
+body {background-color: #D4EBF8 ;
+    border: 20px solid #E38E49;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+
+}
+
+.roundedcorners {border-radius: 25px;}
+.flexbox{display:flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+
+}
+
+@media (max-width: 800px) {
+  
+  
+    .flexbox {
+      flex-direction: column;
+    }
+  }
+
+.responsive  {
+  width: 50%;
+  height: auto;
+  display: block;
+ 
+}
