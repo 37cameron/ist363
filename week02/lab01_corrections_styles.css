@@ -1,0 +1,29 @@
+body {background-color: #E38E49 ;
+    font-family: Arial, Helvetica, sans-serif;
+    
+
+}
+
+
+h1{color: #0a3981;}
+.a{padding: 20px;
+    border-radius: 10px;
+    margin:20px;
+    background-color: #d4ebf8;
+    padding: 1% 10%;
+}
+.images{display:flex;
+flex-wrap: wrap;
+
+}
+strong{color: #E38E49}
+
+.images div{
+    flex: 1;
+}
+
+img{
+    width: 100%;
+    min-width: 250px;
+}
+

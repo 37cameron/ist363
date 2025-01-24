@@ -1,0 +1,50 @@
+body {background-color: #E38E49 ;
+    font-family: Arial, Helvetica, sans-serif;
+    
+
+}
+
+#spacer{height: 80px;}
+h1{color: #0a3981;
+animation: animation 8s;
+position: absolute;
+}
+
+
+.a{padding: 20px;
+    border-radius: 10px;
+    margin:20px;
+    background-color: #d4ebf8;
+    padding: 1% 10%;
+}
+.images{display:flex;
+flex-wrap: wrap;
+
+}
+strong{color: #E38E49}
+
+.images div{
+    flex: 1;
+}
+
+img{
+    width: 100%;
+    min-width: 250px;
+}
+
+@keyframes animation {
+    0% {top: -100px;
+        scale: 100%}
+    35%{transform: scaleX(1);top: 35px;
+        scale: 100%;}
+    45% {top: 35px;transform: scaleX(-1);
+        scale: 100%;}
+    50%{top: 35px;transform: scaleX(1);
+        scale: 100%;}
+    55% {top: 35px;transform: scaleX(-1);
+        scale: 100%;}
+    60%{top: 35px;transform: scaleX(1);
+        scale: 100%;}
+    83% {top: 35px;scale: 200%}
+    100%{top: 35px;scale: 100%}
+}

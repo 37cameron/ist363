@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS animated circle</title>
+    <style>
+        .box{
+            border-radius: 50%;
+            background-color: lightblue;
+            
+            text-align: center;
+            width: 200px;
+            padding: 100px 0;
+            line-height: 0px;
+            margin: 0 auto ;
+            font-size: 200%;
+        }
+        
+        .box:hover{
+            transition: 3s;
+            transform: rotate(360deg);
+            background-color: lightgreen;
+        }
+
+        .otto {
+            position: absolute;
+            left: -150px;
+            top: 500px;
+            animation-name: otto;
+            animation-duration: 2s; 
+            animation-iteration-count: infinite;
+        }
+        
+        @keyframes otto {
+            from  { transform: translateX(0) }
+            to { transform: translateX(2000px) translateY(-500px) rotate(360deg)}
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="box">
+        Go Orange!
+    </div>
+
+    <div><img src="./otto-on-skateboard.png" alt="otto on a otto on a skateboard" class="otto"></div>
+
+    
+
+    
+    
+</body>
+</html>
