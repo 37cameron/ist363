@@ -1,0 +1,33 @@
+@import "reset";
+
+$heading_color: #44ae32;
+$main_font: Arial, Helevtiva, sans-serif;
+
+h1{
+    color: $heading_color;
+}
+
+@mixin goat{
+    color: blue;
+    padding: 10px;
+    background-color: yellow;
+}
+
+.danger {
+    @include goat;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* extend */    
+.jumbotron{ 
+    width: 100%;
+    background-color: lightblue;
+    border: 2px solid navy;
+
+}
+
+.jumbotron_about {
+    @extend .jumbotron;
+    color: grey;
+
+}
