@@ -1,0 +1,82 @@
+@import "partials_03/variables";
+@import "partials_03/mixins";
+@import "partials_03/reset";
+
+
+.flex {
+    @include mixin1;
+    .food {
+        text-align:center ;
+        flex-grow: 1;
+        box-shadow: 2px 2px 10px 1px grey;
+        border-radius: 15px;
+        margin: 2px 2px 2px 2px;
+        
+        h2 {font-size: 70%;}}
+
+}
+.food img {height: 100px;
+width: 100px;
+border-radius: 15px;}
+
+nav {background-color: $peach;justify-content: center;
+text-align: center;color: white;
+font-family: Arial, Helvetica, sans-serif;
+padding: 10px;
+a{
+text-decoration: none;
+color: white;
+font-size: 70%;
+cursor: pointer;
+
+}}
+
+.footer {
+    background-color: $mint;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    p{color: white;}
+}
+
+
+
+
+.flex {display: flex;
+}
+.signup {background-color: $lime;
+justify-content: center;
+text-align: center;
+padding: 30px;
+border-radius: 10px;}
+
+
+.mainphoto {
+    text-align: center;
+    padding: 20px;
+    img {width: 100%;
+max-width: 600px;
+}}
+
+
+
+
+.aboutus {
+    
+    text-align: center;
+button {background-color: $peach;
+    text-align: center;
+width: 100px;
+height: 40px;
+border-radius: 5px;
+color: white;
+font-family: Arial, Helvetica, sans-serif;
+border: none;
+cursor: pointer;
+}}
+
+h2 {color: $pink;
+font-family: Arial, Helvetica, sans-serif;}
+p {color: black;
+    font-family: Arial, Helvetica, sans-serif;}
+
