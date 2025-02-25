@@ -6,6 +6,7 @@
  */
 :root,
 [data-bs-theme=light] {
+  
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -29,7 +30,8 @@
   --bs-gray-700: #495057;
   --bs-gray-800: #343a40;
   --bs-gray-900: #212529;
-  --bs-primary: green;
+  --bs-navy: #000080;
+  --bs-primary: rgb(136, 233, 225);
   --bs-secondary: #6c757d;
   --bs-success: #198754;
   --bs-info: #0dcaf0;
@@ -486,9 +488,7 @@ select:disabled {
 button,
 [type=button],
 [type=reset],
-[type=submit] {
-  -webkit-appearance: button;
-}
+
 button:not(:disabled),
 [type=button]:not(:disabled),
 [type=reset]:not(:disabled),
@@ -543,10 +543,7 @@ legend + * {
   height: auto;
 }
 
-[type=search] {
-  -webkit-appearance: textfield;
-  outline-offset: -2px;
-}
+
 
 /* rtl:raw:
 [type="tel"],
@@ -564,10 +561,7 @@ legend + * {
   padding: 0;
 }
 
-::file-selector-button {
-  font: inherit;
-  -webkit-appearance: button;
-}
+
 
 output {
   display: inline-block;
@@ -3011,19 +3005,19 @@ textarea.form-control-lg {
 
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: green;
-  --bs-btn-border-color: green;
+  --bs-btn-bg: lightblue;
+  --bs-btn-border-color: lightblue;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #006d00;
-  --bs-btn-hover-border-color: #006600;
+  --bs-btn-hover-bg: lightblue;
+  --bs-btn-hover-border-color: lightblue;
   --bs-btn-focus-shadow-rgb: 38, 147, 38;
   --bs-btn-active-color: #fff;
-  --bs-btn-active-bg: #006600;
-  --bs-btn-active-border-color: #006000;
+  --bs-btn-active-bg: lightblue;
+  --bs-btn-active-border-color: lightblue;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: green;
-  --bs-btn-disabled-border-color: green;
+  --bs-btn-disabled-bg: lightblue;
+  --bs-btn-disabled-border-color: lightblue;
 }
 
 .btn-secondary {

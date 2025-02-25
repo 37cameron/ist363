@@ -7,37 +7,81 @@
     <link rel="stylesheet" href="skeleton-framework-1.1.1/src/skeleton.css">
     <link rel="stylesheet" href="skeleton-framework-1.1.1/src/normalize.css">
     <style>
-        .navbar {
-            /*background-color: #333;*/
-            overflow: hidden;
+        .custom-padding {padding: 5px;}
+        .large-image img {
+            width: 100%;
+            height: auto;
+            
         }
-        .navbar a {
-            float: left;
-            display: block;
-           /* color: white;*/
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
+        .small-images img {
+            width: 100%;
+            height: auto;
+            
         }
-        .navbar a:hover {
-            background-color: #ddd;
-            /*color: black;*/
-        }
+        
         
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="navbar">
+        <div class="row custom-padding">
            
-            <a href="">Home</a>
-            <a href="">About</a>
-            <a href="">Services</a>
-            <a href="">Contact</a>
+            <a class="button button-primary four columns"href="">Home</a>
+            <a class="button button-primary four columns"href="">About</a>
+            <a class="button button-primary two columns"href="">Services</a>
+            <a class="button button-primary two columns"href="">Contact</a>
         </div>
     </div>
     <div class="container">
-        <h1>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas pariatur nobis dolor perferendis illo labore. Modi doloribus aspernatur facere consectetur, praesentium fuga repudiandae cum laborum earum quod ullam atque assumenda!</h1>
+        <h1>Lorem ipsum</h1>
     </div>
+    <div class="container">
+        <h1>How To Assemble Pasta</h1>
+        <div class="row">
+            <div class="twelve columns large-image">
+                <img src="" >
+                <h2>Large Image Description Text</h2>
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="four columns small-images">
+                <img src="">
+                <h2>Small Image 1 Description</h2>
+            </div>
+            <div class="four columns small-images">
+                <img src="" alt="">
+                <h2>Small Image 2 Description</h2>
+            </div>
+            <div class="four columns small-images">
+                <img src="" alt="">
+                <h2>Small Image 3 Description</h2>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    <form class="custom-padding">
+        <h2>Request a Recipe!</h2>
+        <div class="row custom-padding">
+          <div class="six columns">
+            <label for="exampleEmailInput">Your email</label>
+            <input class="u-full-width" type="email" placeholder="student@ist363.com" id="exampleEmailInput">
+          </div>
+          <div class="six columns">
+            <label for="exampleRecipientInput">Requested Recipe</label>
+            <input class="u-full-width" type="email" placeholder="pb&j" id="recipeinput">
+          </div>
+        </div>
+        <div class="custom-padding"><input class="button-disabled" type="submit" value="Submit"></div>
+        
+      </form>
+</div>
+    
+    <footer class="custom-padding">
+        <h5>Copyright 2025</h5>
+    </footer>
+
+
 </body>
 </html>
