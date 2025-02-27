@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Examples</title>
+    <!--include an external file-->
+    <script src="example.js"></script>
+</head>
+<body>
+    <!--This is how you include JS internally-->
+    <script>
+        console.log("Hello World");
+        let firstName = 'Cameron';
+        console.log(firstName);
+
+        let x=2*2034;
+        console.log(x);
+        console.log(1==2);
+        console.log(0&&1);
+        
+        let dogAge=15;
+        let type  = 'dog';
+        let petAge;
+        if(type == 'dog') {
+            petAge = dogAge * 7;
+        } 
+        else if (type =='cat'){
+            petAge = dogAge *4;
+        }
+        console.log(petAge)
+
+
+        let gpa = 3.4;
+        let deansList;
+        if (gpa >= 3.5){
+            deansList='you made the deans list';
+        }
+        else {
+            deansList='you did not make the deans list';
+        }
+        console.log(deansList)
+
+    </script>
+</body>
+</html>

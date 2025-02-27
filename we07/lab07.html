@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lab 07</title>
+</head>
+<body>
+    <script>
+        let favNumber = 36;
+        console.log(favNumber)
+        console.log("My favorite number is" + favNumber + ".")
+
+        let favoriteFoods = ['bananas', 'pears', 'maple syrup', 'hummus']
+        console.log(favoriteFoods[1])
+        favoriteFoods.push("spicy curry")
+        console.log(favoriteFoods)
+
+        for (let i= 0; i<favoriteFoods.length; i++){
+            console.log("favorite food" + i +": " + favoriteFoods[i])
+        }
+
+        for (let i= 0; i<favoriteFoods.length; i++){
+
+            if(i==1){
+                continue;
+            }
+                console.log("favorite foods" + i +": " + favoriteFoods[i]);
+            
+            
+        }
+
+        let book={
+            title: "born to run",
+            author: "Chris McDougal",
+            yearPublished: 2015,
+            isAvailable: true
+
+        }
+        console.log(book.title)
+        console.log(book.author)
+        if (book.isAvailable) {
+        console.log("This book is available for checkout.");
+        } 
+        else {
+        console.log("Sorry, this book is currently checked out.");
+        }
+
+        let x=0;
+        while(x<21){
+            console.log(x); 
+            x += 2;
+        }
+
+        let randomNumber = Math.floor(Math.random() * 6) + 1;
+        console.log(randomNumber);
+    </script>
+</body>
+</html>
