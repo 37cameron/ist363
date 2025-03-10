@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+        }
+        .game-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 50vh;
+        }
+        .character {
+            width: 150px;
+        }
+        .fireball1 {
+            width: 50px;
+            position: absolute;
+            transition: transform 0.5s linear;
+        }
+        .fireball2 {
+            width: 50px;
+            position: absolute;
+            transition: transform 0.5s linear;
+            transform: scaleX(-1);
+            
+        }
+        .statss {
+            margin-top: 20px;
+        }
+        .button {
+            background-color: orange;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .move1 {
+            transform: translateX(100px);
+        }
+        .move2 {
+            
+            transform: translateX(-100px);
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Fireball Duel</h1>
+    <div class="game-container">
+        <div>
+            <img src="../monster.jpg" class="character" id="monster">
+            <p id="monsterShield">Monster Shield: 100%</p>
+        </div>
+        <div><img src="../fireball.gif" class="fireball1" id="fireball1"></div>
+        
+        <div><img src="../fireball.gif" class="fireball2" id="fireball2"></div>
+        <div>
+            <img src="../girl.jpg" class="character" id="girl">
+            <p id="girlShield">Girl Shield: 100%</p>
+        </div>
+    </div>
+    <button class="button" id="throwFireball">Throw Fireball</button>
+
+    <script>
+        let girlSheild = 100
+        let monsterSheild = 100
+        
+
+        function animateFireball(){
+            let fireball1 = document.getElementById("fireball1");
+            let fireball2 = document.getElementById("fireball2");
+            fireball1.classList.add("move1");
+            fireball2.classList.add("move2");
+        }
+        throwFireball.addEventListener("click", playGame)
+        function playGame() {
+            animateFireball();
+            let randomNum1 = Math.floor(Math.random() *(25)) + 5;
+            let randomNum2 = Math.floor(Math.random() *(25)) + 5;
+            girlSheild = girlSheild - randomNum1;
+            monsterSheild = monsterSheild - randomNum2;
+
+            //update variable names
+            document.getElementById("girlShield").textContent = `Monster Shield: ${Math.max(girlSheild, 0)}%`;
+            document.getElementById("monsterShield").textContent = `Girl Shield: ${Math.max(monsterSheild, 0)}%`;
+
+            
+            if (girlSheild <= 0 && monsterSheild <= 0) {
+                alert("It's a tie! Both shields are destroyed.");
+                disableButton();
+            } else if (girlSheild <= 0) {
+                alert("Monster Wins!");
+                disableButton();
+            } else if (monsterSheild <= 0) {
+                alert("Girl wins!");
+                disableButton();
+            }
+
+        }
+
+
+
+       
+    
+
+    
+        
+
+        
+
+    </script>
+</body>
+</html>

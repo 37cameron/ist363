@@ -8,8 +8,28 @@
     <script src="example.js"></script>
 </head>
 <body>
+
+    <form id="form">
+        <p>Enter your dog's age (in human years)</p><input type="number" id="numericInput" name="numericInput" required>
+        <button id="myBtn" type="submit">Submit</button>
+        <p id="demo">Your dog is x years old</p>
+    </form>
     <!--This is how you include JS internally-->
     <script>
+        document.getElementById("myBtn").addEventListener("click", myFunction);
+        function dogYears(f){
+            return f*7
+        }
+        let newAge = dogYears(document.getElementById("form").elements[1].value)
+        function myFunction(){
+            document.getElementById("demo").innerText= "Your dogs age is" + newAge + "!"
+        }
+
+        let dogAge == 0;
+        console.log(getElement)
+
+
+
         console.log("Hello World");
         let firstName = 'Cameron';
         console.log(firstName);
@@ -19,7 +39,7 @@
         console.log(1==2);
         console.log(0&&1);
         
-        let dogAge=15;
+        
         let type  = 'dog';
         let petAge;
         if(type == 'dog') {

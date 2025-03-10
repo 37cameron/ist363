@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monster Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body {font-family: Verdana, Geneva, Tahoma, sans-serif; color: #ffffff; text-align: center;}
+        .container {background-color: #000000; padding: 40px; border-radius: 20px; width: 700px; margin: 20px auto; position: relative;}
+        #gameboard, #scoreboard, #playbutton {display: flex; width: 90%; margin: 20px auto;}
+        #gameboard .chars, #scoreboard div, #playbutton button {flex: 1; text-align: center;}
+        .chars img {width: 100%;}
+        .fireball img {width: 80px;}
+        .fireball {flex: 4;}
+        #fireballleft {position: absolute; left: 180px; top: 150px; transition: all 2s ease-in-out;}
+        #fireballright {rotate: 180deg; position: absolute; rotate: 180deg; left: 500px; top: 150px; transition: all 2s ease-in-out;}
+        .medievalsharp-regular {font-family: "MedievalSharp", cursive; font-weight: 400; font-style: normal;}
+        button { background: #ffbf7f; background-image: -webkit-linear-gradient(top, #ffbf7f, #ff8000); background-image: -moz-linear-gradient(top, #ffbf7f, #ff8000); background-image: -ms-linear-gradient(top, #ffbf7f, #ff8000); background-image: -o-linear-gradient(top, #ffbf7f, #ff8000); background-image: linear-gradient(to bottom, #ffbf7f, #ff8000); color: white; border: 0px; padding: 10px 20px 10px 20px; }
+        button:hover {background: #ff8000; background-image: -webkit-linear-gradient(top, #ff8000, #ff8000); background-image: -moz-linear-gradient(top, #ff8000, #ff8000); background-image: -ms-linear-gradient(top, #ff8000, #ff8000); background-image: -o-linear-gradient(top, #ff8000, #ff8000); background-image: linear-gradient(to bottom, #ff8000, #ff8000); }        
+        p { font-size: 20px;font-weight: bold;text-align: center;width: 100%;}
+        .animate {animation: moveRight 1s ease-in-out;}
+        .tiefinal { font-size: 20px;font-weight: bold;text-align: center;width: 100%;}
+        @keyframes moveRight { 
+            from { transform: translateX(0px); }
+            to { transform: translateX(300px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="medievalsharp-regular">Fireball Duel</h1>
+        <div id="gameboard">
+            <div class="chars"><img src="../monster.jpg" alt="monster" id="monster"></div>
+            <div class="fireball">
+                <img src="../fireball.gif" alt="fireball" id="fireballleft">
+                <img src="../fireball.gif" alt="fireball" id="fireballright">
+            </div>
+            <div class="chars"><img src="../girl.jpg" alt="girl" id="girl"></div>
+        </div>
+        <div id="scoreboard">
+            <div id="mscore">Monster Shield: 100%</div>
+            <div id="gscore">Girl Shield: 100%</div>
+        </div>
+        <div id="playbutton"><button id="playButton">Throw Fireball</button></div>
+    </div>
+
+        <script>
+             let girlSheild = 100
+             let monsterSheild = 100
+
+            playbutton.addEventListener("click", playGame)
+
+            
+
+            function animateFireball() {
+
+            // Remove the class to reset animation
+            document.getElementById("fireballleft").classList.remove("animate");
+            document.getElementById("fireballright").classList.remove("animate");
+
+            // Use a small timeout to allow the browser to register the removal
+            setTimeout(() => {
+                document.getElementById("fireballleft").classList.add("animate");
+                document.getElementById("fireballright").classList.add("animate");
+            }, 10);  // Small delay ensures re-triggering
+        }
+        function playGame() {
+            animateFireball();
+            let randomNum1 = Math.floor(Math.random() *(25)) + 5;
+            let randomNum2 = Math.floor(Math.random() *(25)) + 5;
+            girlSheild = girlSheild - randomNum1;
+            monsterSheild = monsterSheild - randomNum2;
+
+            
+            document.getElementById("mscore").textContent = `Monster Shield: ${Math.max(girlSheild, 0)}%`;
+            document.getElementById("gscore").textContent = `Girl Shield: ${Math.max(monsterSheild, 0)}%`;
+
+            
+            if (girlSheild <= 0 && monsterSheild <= 0) {
+                
+                
+                disableButton();
+                monster.src='../boom.png';
+                girl.src='../boom.png';
+                document.getElementById('playbutton').id='tiefinal'
+                document.getElementById('playButton').textContent="It's a tie!"
+            } else if (girlSheild <= 0) {
+                
+                
+                disableButton();
+                girl.src='../boom.png';
+                document.getElementById('playbutton').id='tiefinal'
+                document.getElementById('playButton').textContent="Monster wins!"
+            } else if (monsterSheild <= 0) {
+                
+                
+                disableButton();
+                monster.src='../boom.png';
+                document.getElementById('playbutton').id='tiefinal'
+                document.getElementById('playButton').textContent="Girl Wins!"
+            }
+
+        }
+        function disableButton() {
+            document.getElementById("playbutton").disabled = true;
+        }
+
+        </script>
+</body>
+</html>
