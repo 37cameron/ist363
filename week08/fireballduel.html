@@ -91,16 +91,16 @@
                 
                 
                 disableButton();
-                girl.src='../boom.png';
-                document.getElementById('playbutton').id='tiefinal'
-                document.getElementById('playButton').textContent="Monster wins!"
-            } else if (monsterSheild <= 0) {
-                
-                
-                disableButton();
                 monster.src='../boom.png';
                 document.getElementById('playbutton').id='tiefinal'
                 document.getElementById('playButton').textContent="Girl Wins!"
+            } else if (monsterSheild <= 0) {
+                
+                girl.src='../boom.png';
+                document.getElementById('playbutton').id='tiefinal'
+                document.getElementById('playButton').textContent="Monster wins!"
+                disableButton();
+                
             }
 
         }
