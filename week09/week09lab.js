@@ -19,7 +19,7 @@ function reportResults(response){
     }
     
 }
-endpoint = 'https://api.open-meteo.com/v1/forecast?latitude=43.053074&longitude=-76.15549&current=temperature_2m,precipitation,cloud_cover,apparent_temperature&temperature_unit=fahrenheit';
+endpoint = 'https://api.open-meteo.com/v1/forecast?latitude=43.053074&longitude=-76.15549&current=temperature_2m,precipitation,cloud_cover,apparent_temperature&temperature_unit=fahrenheit&precipitation_unit=inch';
 
 
 //step1 make a request object
