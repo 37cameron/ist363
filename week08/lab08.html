@@ -31,9 +31,7 @@
             transform: scaleX(-1);
             
         }
-        .statss {
-            margin-top: 20px;
-        }
+        
         .button {
             background-color: orange;
             border: none;
@@ -95,6 +93,7 @@
             
             if (girlSheild <= 0 && monsterSheild <= 0) {
                 alert("It's a tie! Both shields are destroyed.");
+                monster.src='../boom'
                 disableButton();
             } else if (girlSheild <= 0) {
                 alert("Monster Wins!");
