@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLB 2023-24 Season Summary</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    header h1 {
+      color: #1d3557;
+    }
+
+
+         h2 {
+      border-bottom: 2px solid #1d3557;
+
+
+      padding-bottom: 0.3rem;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .nav button {
+      background-color: #1d3557;
+      color: white;
+      padding: 0.3rem 1rem;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+    }
+
+    .nav button.active {
+      background-color: rgb(115, 197, 248);
+    }
+
+    .layout {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      flex: 1;
+      min-width: 300px;
+    }
+
+
+
+    .team-box {
+      margin-bottom: 1rem;
+      padding: 1rem;
+      background: #f9f9f9;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .team-box:hover {
+      background-color: #eeeeee;
+    }
+
+    .team-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .stat-line {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .stat-box {
+      padding: 0.3rem 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fff;
+      cursor: pointer;
+    }
+
+    .stat-box:hover {
+      background-color: green;
+      color: white;
+    }
+
+    .expanded {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      background: #f0f0f0;
+      padding: 0.5rem;
+      border-radius: 4px;
+    }
+
+    .history-box {
+      background: #f1f1f1;
+      padding: 1rem;
+      border: 1px solid #dddddd;
+    }
+
+    footer {
+      text-align: center;
+      border: 1px solid grey;
+      color: grey;
+      margin-top: 3rem;
+    }
+
+
+
+    @media (max-width: 800px) {
+      .layout {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>MLB 2023-24 Full Season Summary Sorted by Win Percentage</h1>
+      <p>Click on a team to view a brief introduction from Wikipedia</p>
+    </header>
+
+    <div class="nav">
+      <button onclick="filterTeams('300-400')">.300–.400</button>
+      <button onclick="filterTeams('400-500')">.400–.500</button>
+      <button onclick="filterTeams('500-600')" class="active">.500–.600</button>
+      <button onclick="filterTeams('600+')">.600+</button>
+    </div>
+
+    <div class="layout">
+      <div class="column">
+        <h2>Teams by Wins</h2>
+        <div id="teamList">Loading teams...</div>
+      </div>
+      <div class="column">
+        <h2>Team Intro</h2>
+        <div id="historyBox">
+          <p>Select a team to view a brief introduction.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>Cameron Light | IST 363 | Project2</p>
+      <p>APIs used: API-SPORTS & API Wikimedia</p>
+    </footer>
+  </div>
+
+  <script>
+    const API_HEADERS = {
+      'x-rapidapi-key': '52b878b36075583d2e0649a4ce117ad0',
+      'x-rapidapi-host': 'v1.baseball.api-sports.io',
+    };
+    // NOT IN SEQUENCE!!
+    const teamids = [2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 16, 17, 18, 19, 20, 22, 24, 25, 26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37];
+    let teams = [];
+
+
+    let activeRange = '500-600';//Start here
+    let expandedStats = {};
+    const teamList = document.getElementById('teamList');
+    const historyBox = document.getElementById('historyBox');
+
+    async function fetchTeams() {
+      const allTeams = [];
+
+      for (const id of teamids) {
+        try {
+          const res = await fetch(`https://v1.baseball.api-sports.io/teams/statistics?league=1&season=2023&team=${id}`, {
+            method: 'GET',
+            headers: API_HEADERS,
+          });
+          const data = await res.json();
+          const stats = data.response;
+          const wins = stats?.games?.wins?.all?.total;
+          const losses = stats?.games?.loses?.all?.total;
+
+          if (wins && losses >= 0) {
+            const winPct = wins / (wins + losses);
+            allTeams.push({ ...stats, winPct });
+          }
+        } catch (error) {
+          console.error('could not fetch the team numbered', id, err);
+        }
+      }
+
+      //sort them out by number of wins
+      teams = allTeams.sort((a, b) => b.winPct - a.winPct);
+      filterTeams(activeRange);
+    }
+
+
+
+
+
+
+
+
+
+    function filterTeams(range) {
+      activeRange = range;
+
+      document.querySelectorAll('.nav button').forEach(button => button.classList.remove('active'));
+      const activeBtn = [...document.querySelectorAll('.nav button')].find(b => b.innerText.includes(range.replace('-',   '–')));
+      if (activeBtn) activeBtn.classList.add('active');
+
+
+
+
+      const ranges = {
+        '300-400': [0.3, 0.4],
+        '400-500': [0.4, 0.5],
+        '500-600': [0.5, 0.6],
+        '600+': [0.6, 1]
+      };
+
+      const [min, max] = ranges[range];
+      const filtered = teams.filter(t => t.winPct >= min && t.winPct < max);
+      renderTeams(filtered);
+    }
+
+    function renderTeams(teamArray) {
+      teamList.innerHTML = '';//start blank
+
+      teamArray.forEach(team => {
+        //making team boxes
+        const box = document.createElement('div');
+        box.className = 'team-box';
+        const header = document.createElement('div');
+        header.className = 'team-header';
+        header.innerHTML = `
+          <img src="${team.team.logo}" width="50" />
+          <h3>${team.team.name}</h3>
+        `;
+        header.onclick = () => fetchHistory(team.team.name);
+        box.appendChild(header);//stick header in box
+
+        const statLine = document.createElement('div');
+        statLine.className = 'stat-line';
+        //wins
+        const winBox = document.createElement('div');
+        winBox.className = 'stat-box';
+        winBox.textContent = `W: ${team.games.wins.all.total}`;
+        winBox.onclick = () => toggleStats(team.team.id, 'wins', box, team);
+//losses
+        const lossBox = document.createElement('div');
+        lossBox.className = 'stat-box';
+        lossBox.textContent = `L: ${team.games.loses.all.total}`;
+        lossBox.onclick = () => toggleStats(team.team.id, 'losses', box, team);
+        //pct box
+        const pctBox = document.createElement('div');
+        pctBox.className = 'stat-box';
+        pctBox.textContent = `Pct: ${team.winPct.toFixed(3)}`;//3 digits
+
+        statLine.append(winBox, lossBox, pctBox);
+        box.appendChild(statLine);
+
+        teamList.appendChild(box);
+      });
+    }
+
+    function toggleStats(teamId, type, container, teamData) {
+
+        const existingBox = container.querySelector('.expanded');
+  if (existingBox) existingBox.remove();
+
+  // see what is already expanded (if anything)
+  if (expandedStats[teamId] === type) {
+    expandedStats[teamId] = null;
+    return;
+  }
+  expandedStats[teamId] = type;
+
+
+
+
+
+    const info = document.createElement('div');
+  info.className = 'expanded';
+
+  if (type === 'wins') {
+    info.textContent = `Home Wins: ${teamData.games.wins.home.total} | Away Wins: ${teamData.games.wins.away.total}`;
+  } 
+  else {
+    info.textContent = `Home Losses: ${teamData.games.loses.home.total} | Away Losses: ${teamData.games.loses.away.total}`;
+  }
+
+  container.appendChild(info);
+}
+
+    async function fetchHistory(teamName) {
+      try {
+        const response = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(teamName)}`);
+        const data = await response.json();
+        historyBox.innerHTML = `
+          <div class="history-box">
+            <h3>${teamName}</h3>
+            <p>${data.extract || 'No history found.'}</p>
+          </div>
+        `;
+      } catch {
+        historyBox.innerHTML = '<p>Could not load history.</p>';
+      }
+    }
+
+    fetchTeams();
+  </script>
+</body>
+</html>
