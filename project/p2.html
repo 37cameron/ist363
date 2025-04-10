@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MLB 2023-24 Season Summary</title>
+  <title>Project 2</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -141,7 +141,7 @@
   <div class="container">
     <header>
       <h1>MLB 2023-24 Full Season Summary Sorted by Win Percentage</h1>
-      <p>Click on a team to view a brief introduction from Wikipedia</p>
+      <p>Click on a team for a brief introduction from Wikipedia</p>
     </header>
 
     <div class="nav">
@@ -171,6 +171,7 @@
   </div>
 
   <script>
+    //Just sports not wiki
     const API_HEADERS = {
       'x-rapidapi-key': '52b878b36075583d2e0649a4ce117ad0',
       'x-rapidapi-host': 'v1.baseball.api-sports.io',
@@ -204,7 +205,7 @@
             allTeams.push({ ...stats, winPct });
           }
         } catch (error) {
-          console.error('could not fetch the team numbered', id, err);
+          console.error('could not fetch the team numbered', id, error);
         }
       }
 
@@ -225,7 +226,26 @@
       activeRange = range;
 
       document.querySelectorAll('.nav button').forEach(button => button.classList.remove('active'));
-      const activeBtn = [...document.querySelectorAll('.nav button')].find(b => b.innerText.includes(range.replace('-',   '–')));
+      
+      const navElement = document.querySelector('.nav');
+      const allButtons = navElement.querySelectorAll('button');
+      const buttonArray = Array.from(allButtons); //because buttons in node list
+
+      const normalizedRange = range.replace('-', '–');
+      let activeBtn = null;
+
+      for(let i =0; i<buttonArray.length; i++) {
+        const button = buttonArray[i];
+        const buttonText = button.innerText;
+
+        if(buttonText.includes(normalizedRange)){
+          activeBtn = button;
+          break;
+        }
+      }
+
+
+
       if (activeBtn) activeBtn.classList.add('active');
 
 
